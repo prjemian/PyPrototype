@@ -1,0 +1,5 @@
+*.pyc
+/docs/build
+/PyPrototype.egg-info
+/dist
+/src/.DS_Store
