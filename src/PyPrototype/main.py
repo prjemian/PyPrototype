@@ -12,7 +12,8 @@ usage::
 
 '''
 
-import os, sys
+#import os
+#import sys
 
 import __init__
 
@@ -27,11 +28,12 @@ def process_command_line():
     doc = 'v' + version + ', ' + doc.strip()
     parser = argparse.ArgumentParser(description=doc)
     parser.add_argument('-v', '--version', action='version', version=version)
-    parser.add_argument('infile', 
-                        action='store', 
-                        nargs='?', 
-                        help="HDF5 data file name (optional)",
-                        default=None)
+    parser.add_argument(
+        'infile',
+        action='store',
+        nargs='?',
+        help="HDF5 data file name (optional)",
+        default=None)
     return parser.parse_args()  # if we get here, then OK to proceed to start program
 
 
