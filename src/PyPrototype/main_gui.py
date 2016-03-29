@@ -25,6 +25,24 @@ else:
 import __init__
 
 
+class MyGui(QtGui.QWidget):
+    '''
+    Creates a Qt widget in a window
+    '''
+
+    def __init__(self, message, filename):
+        QtGui.QWidget.__init__(self)
+        layout = QtGui.QFormLayout()
+        self.setLayout(layout)
+
+        w_msg = QtGui.QLabel(self)
+        w_msg.setText(message)
+
+        w_fn = QtGui.QLabel(self)
+        w_fn.setText(str(filename))
+        layout.addRow(w_msg, w_fn)
+
+
 def process_command_line():
     '''
     support command-line options such as ```--help``` and ```--version```
@@ -47,9 +65,14 @@ def process_command_line():
 
 def main():
     '''start the program'''
+    import sys
     parms = process_command_line()
-    print "Hello, World.  You'll need to write the GUI.  input file: ",
-    print parms.infile
+    app = QtGui.QApplication(sys.argv)
+    message = "HDF file:"
+    win = MyGui(message, parms.infile)
+    win.show()
+    _r = app.exec_()
+    sys.exit(_r)
 
 
 if __name__ == '__main__':
